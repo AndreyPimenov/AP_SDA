@@ -1,0 +1,32 @@
+#1
+#
+#
+#
+
+#2
+# 
+#
+#
+
+#3
+#
+#
+#
+N = int(input()) # stones in general
+LR = input().split()
+L = int(LR[0]) # min stones
+R = int(LR[1]) # max stones
+i = 0 #iterations
+
+while (N >= L):
+    if N > R:
+        N = N - R
+    else: 
+        N = N - L
+    i = i + 1
+    
+if i % 2 == 0:
+    print('Second')
+else:
+    print('First')
+
