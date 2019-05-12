@@ -1,0 +1,21 @@
+# https://www.xtronical.com/basics/systems/esp-32/using-esp32-arduino-ide/ 
+# https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
+# https://github.com/espressif/arduino-esp32
+# https://youtu.be/-bbZhvaiEjA
+
+int ledPin = 2;  // or perhaps 5 or 9, check your board on internet if doesn't work
+
+void setup()
+{
+    pinMode(ledPin, OUTPUT);
+    Serial.begin(115200);
+}
+
+void loop()
+{
+    Serial.println("Hello, world!");
+    digitalWrite(ledPin, HIGH);
+    delay(2000);
+    digitalWrite(ledPin, LOW);
+    delay(1000);
+}
