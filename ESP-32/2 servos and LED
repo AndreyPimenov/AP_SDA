@@ -1,0 +1,46 @@
+#include <Servo.h>
+
+static const int servosPins[2] = {13, 21}; 
+int ledPin = 2;  // or perhaps 5 or 9, check your board on internet if doesn't work
+
+Servo servos[2];
+
+void setServos(int degrees) {
+    for(int i = 0; i < 2; ++i) {
+        servos[i].write((degrees + (35 * i)) % 180);
+    }
+}
+
+void setup() {
+
+    pinMode(ledPin, OUTPUT);
+
+    Serial.begin(115200);
+
+    for(int i = 0; i < 2; ++i) {
+        if(!servos[i].attach(servosPins[i])) {
+            Serial.print("Servo ");
+            Serial.print(i);
+            Serial.println("attach error");
+        }
+    }
+}
+
+void loop() {
+    for(int posDegrees = 45; posDegrees <= 135; posDegrees++) {
+        setServos(posDegrees);
+        Serial.println(posDegrees);
+        
+        delay(20);
+    }
+    digitalWrite(ledPin, HIGH);
+
+    
+    for(int posDegrees = 135; posDegrees >= 45; posDegrees--) {
+        setServos(posDegrees);
+        Serial.println(posDegrees);
+        
+        delay(20);
+    }
+    digitalWrite(ledPin, LOW);
+}
